@@ -1,6 +1,36 @@
-<h1>Music Hall</h1>
+
+<% if is_logged_in?() %>
+
+    Welcome, <%=current_user[0]["name"]%>
+
+    <form action="/sessions" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Logout">
+    </form>
+
+<% else %>
+    <a href="/sign_up">Sign up</a>
+
+    <a href="/login">Login</a>
+<% end %>
+
+
 
 <form action="/search">
     <input type="text" name="search" />
     <input type="submit" />
 </form>
+
+<% if is_logged_in?() %>
+
+    
+    <section>
+    <h2>Your Playlist</h2>
+
+    <ul>
+        <li></li>
+    </ul>
+
+    </section>
+
+<% end %>

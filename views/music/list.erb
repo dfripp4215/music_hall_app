@@ -2,6 +2,7 @@
     <% songs.each do |song| %>
         <li>
         <a href="/display?search=<%=song["track"]["key"]%>" name="my_name"><%=song["track"]["title"]%></a>
+        - <%=song["track"]["subtitle"]%>
         </li>
     <%end%>
 </ul>

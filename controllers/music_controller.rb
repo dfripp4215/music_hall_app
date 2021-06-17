@@ -59,37 +59,19 @@ get '/display' do
     artist = response_hash['subtitle']
     cover = response_hash["images"]['coverart']
 
-    user_playlist = get_playlist(current_user[0]['email'])
+    if is_logged_in?()
+        user_playlist = get_playlist(current_user[0]['email'])
 
-    song = title
-    user_id = session[:id]
-    playlist = response['playlist']
+        song = title
+        user_id = session[:id]
+        playlist = response['playlist']
 
-    
+    end
 
-    add = add_to_playlist(song, artist, playlist, user_id)
-
-    
-
-    erb :'/music/search', locals: {response: response, title: title, artist: artist, cover: cover, user_playlist: user_playlist, add: add}
+    erb :'/music/search', locals: {response: response, title: title, artist: artist, cover: cover, user_playlist: user_playlist}
   
 end
 
-# Go to new_playlist page. Create a playlist
-get '/playlist/create' do 
-
-    erb :'music/new_playlist'
-end
-
-# Create a blank playlist in the database
-post '/playlist' do 
-    playlist_name = params[:playlist_name]
-    user_name = current_user[0]["email"]
-
-    create_new_playlist(playlist_name, user_name)
-
-    redirect '/'
-end
 
 # Add a song to a playlist
 post '/display/create' do 
@@ -99,9 +81,61 @@ post '/display/create' do
     artist = params['artist']
     user_id = current_user[0]["id"]
 
-    
-
     add_to_playlist(song, artist, playlist, user_id)
 
     redirect '/'
+end
+
+
+# Create a playlist page
+get '/playlist/create' do 
+
+    erb :'music/new_playlist'
+end
+
+
+# Create a new playlist in the database
+post '/playlist' do 
+    playlist_name = params[:playlist_name]
+    user_name = current_user[0]["email"]
+
+    create_new_playlist(playlist_name, user_name)
+
+    redirect '/'
+end
+
+# Edit a playlist
+get '/playlist/:playlist_name/edit' do |playlist_name|
+    # Look up the food by id, and pass it to the template
+    params = [playlist_name]
+    results = run_sql("select * from saved_songs where playlist = $1;", params)
+
+    playlist = results[0]["playlist"]
+
+    erb :'/music/edit', locals: {songs: results, playlist: playlist}
+end
+
+# Delete a song inside a playlist
+
+delete '/playlist/edit/:song/delete' do |song|
+
+    song_name = params["song_name"]
+
+    params = [song]
+
+    run_sql("delete from saved_songs where song = $1", params)
+
+    redirect '/'
+
+end
+
+# Delete a whole playlist
+delete '/playlist/:playlist_name' do |playlist_name|
+
+    params = [playlist_name]
+
+    run_sql("delete from playlist where playlist_name = $1", params)
+
+    redirect '/'
+
 end

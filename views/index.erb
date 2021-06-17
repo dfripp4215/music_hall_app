@@ -25,12 +25,24 @@
 
     
     <section>
-    <h2>Your Playlist</h2>
 
-    <ul>
-        <li></li>
-    </ul>
+        <h2>Your Playlist</h2>
 
+        <% playlists.each do |playlist| %>
+            <section>
+                <span><%= playlist["playlist_name"] %></span>
+                    <ul>
+                        <%songs.each do |song|%>
+                            <li><%=song['song']%></li>
+                            <li><%=song['artist']%></li>
+                        
+                        <%end%>
+                    </ul>
+            </section>
+        <%end%>
+        
+
+        <a href="/playlist/create">Create a playlist</a>
     </section>
 
 <% end %>

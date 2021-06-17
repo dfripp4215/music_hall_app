@@ -1,23 +1,38 @@
+<form action="/display/create" method="POST">
+    <main>
+        <section id='image'>
 
-<main>
-    <section id='image'>
+            <img src="<%=cover%>" alt="">
 
-        <img src="<%=cover%>" alt="">
+        </section>
 
-    </section>
+        <section id='text'>
 
-    <section id='text'>
+        <h2><%=title%></h2>
 
-    <h2><%=title%></h2>
+        <ul>
+            <li><span>Artist:</span> <%=artist%></li>
+        </ul>
 
-    <ul>
-        <li><span>Artist:</span> <%=artist%></li>
-    </ul>
+        <% if is_logged_in?() %>
+        <ul>
+            <% user_playlist.each do |name| %>
 
-    <button>Add to list</button>
 
-    </section>
+                <li>
+                <input type="hidden" name="title" value="<%=title%>">
+                <input type="hidden" name="artist" value="<%=artist%>">
+                <input type="radio" name='playlist' value='<%=name['playlist_name']%>'>
+                <label for="<%=name['playlist_name']%>"><%=name['playlist_name']%></label>
+                </li>
+            
+            <%end%>
+        </ul>
+        <input type="submit" value='Enter'>
+        <%end%>
+       
+        </section>
 
-</main>
-
+    </main>
+</form>
 

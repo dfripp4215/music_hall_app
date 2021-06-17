@@ -13,3 +13,10 @@ create table users (
     img_url TEXT, 
     password_digest TEXT
 );
+
+create table saved_songs(
+    song TEXT, 
+    artist TEXT, 
+    playlist TEXT
+    user_id INTEGER
+);

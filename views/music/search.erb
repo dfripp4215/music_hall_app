@@ -1,5 +1,5 @@
 
-    <main>
+    <section id='display_content'>
         <section id='image'>
 
             <img src="<%=cover%>" alt="">
@@ -10,32 +10,35 @@
 
         <h2><%=title%></h2>
 
-        <ul>
-            <li><span>Artist:</span> <%=artist%></li>
-        </ul>
+        
+        <h3>By <%=artist%></h3>
+        
 
         <% if is_logged_in?() %>
+
+        <h4>Add to playlist:</h4>
+
         <form action="/display/create" method="POST">
-        <ul>
-            <% user_playlist.each do |name| %>
+            <ul>
+                <% user_playlist.each do |name| %>
 
+                    <li>
+                    <input type="hidden" name="title" value="<%=title%>">
+                    <input type="hidden" name="artist" value="<%=artist%>">
+                    <input type="radio" name='playlist' value='<%=name['playlist_name']%>'>
+                    <label for="<%=name['playlist_name']%>"><%=name['playlist_name']%></label>
+                    </li>
             
-                <li>
-                <input type="hidden" name="title" value="<%=title%>">
-                <input type="hidden" name="artist" value="<%=artist%>">
-                <input type="radio" name='playlist' value='<%=name['playlist_name']%>'>
-                <label for="<%=name['playlist_name']%>"><%=name['playlist_name']%></label>
-                </li>
-            
+                <%end%>
+            </ul>
 
-            <%end%>
-        </ul>
-        <input type="submit" value='Enter'>
+        <input type="submit" value='Add' id='add_button'>
         </form>
+
         <%end%>
        
         </section>
 
-    </main>
+    </section>
 
 

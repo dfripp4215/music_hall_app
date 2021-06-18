@@ -1,25 +1,31 @@
-
-<form action="/search">
-    <input type="text" name="search" />
-    <input type="submit" value="Search"/>
-</form>
-
-<section id='top_ten_list'>
-
-    <% song_list.each do |song|%>
-
-        <p id='top_ten_text'>
-
-        <a href="/display?search=<%=song["key"]%>" name="my_name">
-            <img class='song_slides' src="<%=song['images']['coverart']%>" alt="" >
-        </a>
-        
-         <%=song['title']%><span> - Artist: <%=song['subtitle']%></span>
-        </p>
-        
-
-        
+<h2>
+    <% if is_logged_in?() %>
+        Welcome, <%=current_user[0]["name"]%>
     <%end%>
+</h2>
+
+<section id='top_ten'>
+
+    <h2>Todays Top Ten</h2>
+
+    <section id='top_ten_list'>
+
+        <% song_list.each do |song|%>
+
+            <p id='top_ten_item'>
+
+            <a href="/display?search=<%=song["key"]%>" name="my_name">
+                <img class='song_slides' src="<%=song['images']['coverart']%>" alt="" >
+            </a>
+            
+            <span class='top_ten_text'>
+                <%=song['title']%><span> - Artist: <%=song['subtitle']%></span>
+            </span>
+            </p>
+            
+        <%end%>
+
+    </section>
 
 </section>
 
@@ -29,32 +35,46 @@
 
         <h2>Your Playlists</h2>
 
-        <% playlists.each do |playlist| %>
-
-            <section id='indv_playlists'>
-
-                <h3><%= playlist["playlist_name"] %></h3>
-
-                <ul>
-                    <%songs.each do |song|%>
-                        <%if song['playlist'] == playlist["playlist_name"]%>
-                            <li><%=song['song']%> <span id='artist'> - Artist: <%=song['artist']%></span></li>
-                        <%end%>
-                    <%end%>
-                </ul>
-
-                <form action="/playlist/<%= playlist["playlist_name"] %>" method="POST">
-                    <input type="hidden" name="_method" value="DELETE"/> 
-                    <input type="submit" value="Delete Playlist"/>
-                </form>
-                
-                <a href="/playlist/<%= playlist["playlist_name"]%>/edit">Edit</a>
-            </section>
-
-        <%end%>
+        <a href="/playlist/create">Create New Playlist</a>
         
+        <section id='all_playlists'>
 
-        <a href="/playlist/create">Create a playlist</a>
+
+            <% playlists.each do |playlist| %>
+
+                <section id='indv_playlists'>
+
+                    <h3><%= playlist["playlist_name"] %></h3>
+                    
+                    
+                    
+            
+                <%songs.each do |song|%>
+
+                    <ul>
+                    <%if song['playlist'] == playlist["playlist_name"]%>
+                        <li><%=song['song']%> <span id='artist'> - Artist: <%=song['artist']%></span></li>
+
+                    <%end%>
+                
+                    </ul>
+                    
+                <%end%>
+
+                    <div id='playlist_inputs'>
+                        <form action="/playlist/<%= playlist["playlist_name"] %>" method="POST">
+                            <input type="hidden" name="_method" value="DELETE"/> 
+                            <input type="submit" value="Delete Playlist" class='delete_button'/>
+                        </form>
+                        
+                        <a href="/playlist/<%= playlist["playlist_name"]%>/edit" class='edit_button'>Edit</a>
+                    </div>
+                </section>
+                
+            <%end%>
+        
+        </section>
+        
 
     </section>
 

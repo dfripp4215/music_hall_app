@@ -3,8 +3,9 @@ get '/home' do
     if is_logged_in?()
         playlists = get_playlist(current_user[0]["email"])
 
-
         songs = get_songs(current_user[0]["id"])
+
+        
     end
 
     # Send request to API to get top 10 popular songs

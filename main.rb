@@ -21,3 +21,8 @@ get '/' do
   redirect '/home'
 end
 
+get '/about' do
+
+  erb :about
+end
+

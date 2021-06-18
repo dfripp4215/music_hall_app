@@ -1,18 +1,21 @@
 
-
+<section id='edit_playlist'>
     <h1><%=playlist%></h1>
 
     <ul>
         <% songs.each do |song|%>
         
-        <li><%=song['song']%> <span id='artist'> - Artist: <%=song['artist']%></span></li>
+        <li>
+            <%=song['song']%> - <%=song['artist']%>
+            <form action='/playlist/edit/<%=song['song']%>/delete' method='POST'>
+                <input type="hidden" name="_method" value="DELETE"/>
+                <input type="hidden" name='song_name' value='<%=song['song']%>'>
+                <input type="submit" value='Remove from playlist'>
+            </form>
+        </li>
 
-        <form action='/playlist/edit/<%=song['song']%>/delete' method='POST'>
-            <input type="hidden" name="_method" value="DELETE"/>
-            <input type="hidden" name='song_name' value='<%=song['song']%>'>
-            <input type="submit" value='Remove from playlist'>
-        </form>
+        
 
         <%end%>
     </ul>
-
+</section>

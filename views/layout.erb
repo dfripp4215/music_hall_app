@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Music Hall</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Noto+Serif&display=swap" rel="stylesheet">
   <link rel='stylesheet' href='/css/main.css'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -13,21 +15,34 @@
 
     <nav>
       <a href='/'>Home</a>
+      <a href="/about">About</a>
 
+      <form action="/search" id='search_form'>
+        <input type="text" name="search" onfocus="this.value=''" value='Search Song / Album / Artist' id='search_bar'/>
+        <input type="submit" value="Search" id='search_submit'/>
+      </form>
 
       <% if is_logged_in?() %>
+        <section class='user_interface'>
 
-          Welcome, <%=current_user[0]["name"]%>
+          <div id='user_details'>
+            <img src="<%=current_user[0]["img_url"]%>" alt="">
+            <span><%=current_user[0]["name"]%></span>
+          </div>
 
           <form action="/sessions" method="POST">
               <input type="hidden" name="_method" value="DELETE">
               <input type="submit" value="Logout">
           </form>
+          
+        </section>
 
       <% else %>
+        <section class='user_interface'>
           <a href="/sign_up">Sign up</a>
 
           <a href="/login">Login</a>
+        </section>
       <% end %>
       
 
@@ -37,5 +52,10 @@
 
   <%= yield %>
 
+  <footer>
+      <a href='/'>Home</a>
+      <a href="/about">About</a>
+      <p>Copyright© - 2021</p>
+  </footer>
 </body>
 </html>

@@ -1,27 +1,37 @@
 <h2>Sign Up</h2>
 
-<form action="/sign_up" method="POST">
+<section id='sign_up'>
+    <form action="/sign_up" method="POST">
 
-    <label for="email">
-        Email:
-    </label>
-    <input type="text" name='email'/>
+        <div id='email'>
+            <label for="email">
+                Email:
+            </label>
+            <input type="text" name='email'/>
+        </div>
 
-    <label for="name">
-        Name:
-    </label>
-    <input type="text" name='name'/>
+        <div id='name'>
+            <label for="name">
+                Name:
+            </label>
+            <input type="text" name='name'/>
+        </div>
 
-    <label for="img_url">
-        Profile Picture (Optional):
-    </label>
-    <input type="text" name='img_url' />
+        <div id='img_url'>
+            <label for="img_url">
+                Profile Picture (Optional):
+            </label>
+            <input type="text" name='img_url' />
+        </div>
 
-    <label for="password">
-        Password:
-    </label>
-    <input type="password" name='password' />
-
-    <button>Sign Up</button>
-    
-</form>
+        <div id='password'>
+            <label for="password">
+                Password:
+            </label>
+            <input type="password" name='password' />
+        </div>
+        
+        <button>Sign Up</button>
+        
+    </form>
+</section>

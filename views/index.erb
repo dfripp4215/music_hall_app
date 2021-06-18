@@ -21,6 +21,18 @@
     <input type="submit" />
 </form>
 
+<section id='top_ten'>
+    <% song_list.each do |song|%>
+
+        <a href="/display?search=<%=song["key"]%>" name="my_name">
+            <img src="<%=song['images']['coverart']%>" alt="">
+        </a>
+
+        <p id='top_ten_text'><%=song['title']%> <span> - Artist: <%=song['subtitle']%></span></p>
+
+<%end%>
+</section>
+
 <% if is_logged_in?() %>
 
     <section>

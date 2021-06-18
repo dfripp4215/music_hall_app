@@ -7,12 +7,30 @@ get '/home' do
         songs = get_songs(current_user[0]["id"])
     end
 
-    erb :index, locals: {playlists: playlists, songs: songs}
+    # Send request to API to get top 10 popular songs
+    url = URI("https://shazam.p.rapidapi.com/charts/track?locale=en-US&pageSize=10&startFrom=0")
+
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+    request = Net::HTTP::Get.new(url)
+    request["x-rapidapi-key"] = 'e59ea233e3msh224121e7350bc83p1ac741jsn7b51e68b5ad8'
+    request["x-rapidapi-host"] = 'shazam.p.rapidapi.com'
+
+    response = http.request(request)
+    
+    response_hash = JSON.parse(response.read_body)
+
+    song_list = response_hash['tracks']
+
+    erb :index, locals: {playlists: playlists, songs: songs, song_list: song_list}
 end
 
 # Search for a song/artist  
 get '/search' do 
-  
+    
+    # Send request to API to get a list of songs/artist/albums with search_term name
     search_term = params['search']
   
     url = URI("https://shazam.p.rapidapi.com/search?term=#{search_term}&locale=en-US&offset=0&limit=5")
@@ -38,7 +56,8 @@ end
 
 # display a single song
 get '/display' do 
-    
+
+    # Send request to API to return a particular song selected from list of songs/artist/album
     search = params['search'] 
   
     url = URI("https://shazam.p.rapidapi.com/songs/get-details?key=#{search}&locale=en-US")

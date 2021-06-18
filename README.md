@@ -6,7 +6,7 @@ I want to give a quick shoutout to my instructors Zara, Alex and Kasun for helpi
 
 ## Link
 
-https://dfripp4215.github.io/TicTacToe/
+https://rocky-crag-09664.herokuapp.com/home
 
 ## Features
 

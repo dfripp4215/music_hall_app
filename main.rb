@@ -4,7 +4,6 @@ require 'pg'
 require 'uri'
 require 'net/http'
 require 'openssl'
-require 'HTTParty'
 
 enable :sessions
 

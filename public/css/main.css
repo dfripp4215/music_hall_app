@@ -210,7 +210,7 @@ img.song_slides {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-/* Search Page ends*/
+/* End */
 
 /* Display page */
 #display_content {
@@ -283,7 +283,6 @@ img.song_slides {
     display: flex;
     justify-content: space-between;
     gap: 10px;
-    margin: ;
 }
 
 #edit_playlist input {
@@ -372,14 +371,27 @@ img.song_slides {
 
 /* end */
 
-footer {
-    margin: 30px;
-    font-size: larger;
+
+/* About Page */
+
+#about_page {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 20px;
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 #about_text {
     margin: 0 auto;
-    width: 50%;
+    width: 72%;
     font-size: 165%;
     text-align: left;
+}
+
+/* End */
+
+footer {
+    margin: 30px;
+    font-size: larger;
 }

@@ -14,7 +14,7 @@ require_relative 'helpers/session'
 require_relative 'controllers/music_controller'
 require_relative 'controllers/user_controller'
 require_relative 'controllers/session_controller'
-
+  
 
 get '/' do
   

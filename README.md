@@ -38,6 +38,8 @@ I started by brainstorming ideas for the website, once I has the idea to make it
 
 Before I started to code I made psudocode of everything I'd need to do within my website, along with connecting to my API and database.
 
+Planning diagrams are in the 'planning' folder.
+
 ## Future Features
 
 * Display message when a user has no playlists made.

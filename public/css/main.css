@@ -1,3 +1,6 @@
+
+/* Navigation + constants */
+
 body {
     max-width: 85%;
     margin: 0 auto;
@@ -76,6 +79,11 @@ nav input {
     font-size: 100%;
 }
 
+/* End */
+
+
+/* Home Page */
+
 #top_ten h2 {
     font-size: 250%;
 }
@@ -112,9 +120,14 @@ img.song_slides {
 #top_ten_item {
     height: 360px;
     padding: 0 10px 10px;
-    box-shadow: 8px 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
 }
+
+#top_ten_item:hover {
+    box-shadow: 8px 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* User Playlists */
 
 #user_playlists {
     margin-top: 95px;
@@ -183,6 +196,8 @@ img.song_slides {
     margin-bottom: 5px;
 }
 
+/* End */
+
 
 /* Search Page */
 
@@ -212,7 +227,9 @@ img.song_slides {
 
 /* End */
 
+
 /* Display page */
+
 #display_content {
     border-radius: 30px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -298,6 +315,9 @@ img.song_slides {
     border-radius: 10px;
     color: aliceblue;
 }
+
+/* End */
+
 
 /* Sign up Page */
 

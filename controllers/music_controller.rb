@@ -28,7 +28,12 @@ get '/home' do
 
     songs = get_songs(current_user[0]["id"])
 
-    erb :index, locals: {playlists: playlists, song_list: song_list, songs: songs,} 
+    erb :index, locals: { song_list: song_list, 
+        if is_logged_in?()
+            playlists: playlists,
+            songs: songs,
+        end
+    } 
         
 
 end

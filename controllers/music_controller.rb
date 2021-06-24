@@ -24,18 +24,13 @@ get '/home' do
 
     song_list = response_hash['tracks']
 
-    if is_logged_in?()
+    playlists = get_playlist(current_user[0]["email"])
 
-        playlists = get_playlist(current_user[0]["email"])
+    songs = get_songs(current_user[0]["id"])
 
-        songs = get_songs(current_user[0]["id"])
-
-        erb :index, locals: {playlists: playlists, song_list: song_list, songs: songs,} 
+    erb :index, locals: {playlists: playlists, song_list: song_list, songs: songs,} 
         
-        else 
-         
-        erb :index, locals: {song_list: song_list,}
-    end
+
 end
 
 # Search for a song/artist  

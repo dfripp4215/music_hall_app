@@ -5,7 +5,7 @@ get '/home' do
 
         songs = get_songs(current_user[0]["id"])
         
-        locals[:songs songs,]
+        
         
     end
 
@@ -26,7 +26,11 @@ get '/home' do
 
     song_list = response_hash['tracks']
 
-    erb :index, locals: {playlists: playlists, song_list: song_list}
+    erb :index, locals: {playlists: playlists, song_list: song_list, 
+        if is_logged_in?()
+            songs: songs,
+        end
+    }
 end
 
 # Search for a song/artist  
@@ -52,7 +56,9 @@ get '/search' do
   
     songs = response_hash["tracks"]["hits"]
   
-    erb :'/music/list', locals: {response_hash: response_hash, songs: songs }
+    erb :'/music/list', locals: {response_hash: response_hash,  
+        
+    }
   
 end
 

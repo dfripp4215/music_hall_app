@@ -34,7 +34,7 @@ get '/home' do
         
         else 
          
-        erb :index, locals: {playlists: playlists, song_list: song_list,}
+        erb :index, locals: {song_list: song_list,}
     end
 end
 

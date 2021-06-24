@@ -16,7 +16,7 @@ get '/home' do
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
     request = Net::HTTP::Get.new(url)
-    request["x-rapidapi-key"] = 'e59ea233e3msh224121e7350bc83p1ac741jsn7b51e68b5ad8'
+    request["x-rapidapi-key"] = "#{ENV["SHAZAM_API_KEY"]}"
     request["x-rapidapi-host"] = 'shazam.p.rapidapi.com'
 
     response = http.request(request)

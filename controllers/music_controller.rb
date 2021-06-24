@@ -28,7 +28,7 @@ get '/home' do
 
     erb :index, locals: {playlists: playlists, song_list: song_list, 
         if is_logged_in?()
-            locals: [:songs songs,]
+            locals [:songs songs,]
         end
     }
 end

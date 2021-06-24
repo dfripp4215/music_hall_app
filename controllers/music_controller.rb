@@ -1,13 +1,11 @@
 
 get '/home' do
-    if is_logged_in?()
-        playlists = get_playlist(current_user[0]["email"])
-
-        songs = get_songs(current_user[0]["id"])
+    # if is_logged_in?()
         
-    # locals: << :songs songs,
         
-    end
+    # # locals: << :songs songs,
+        
+    # end
 
     # Send request to API to get top 10 popular songs
     url = URI("https://shazam.p.rapidapi.com/charts/track?locale=en-US&pageSize=10&startFrom=0")
@@ -27,6 +25,10 @@ get '/home' do
     song_list = response_hash['tracks']
 
     if is_logged_in?()
+
+        playlists = get_playlist(current_user[0]["email"])
+
+        songs = get_songs(current_user[0]["id"])
 
         erb :index, locals: {playlists: playlists, song_list: song_list, songs: songs,} 
         

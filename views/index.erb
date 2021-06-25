@@ -48,7 +48,7 @@
                     
                     
                     
-            
+            <% if is_logged_in?() %>
                 <%songs.each do |song|%>
 
                     <ul>
@@ -60,6 +60,7 @@
                     </ul>
                     
                 <%end%>
+            <%end%>
 
                     <div id='playlist_inputs'>
                         <form action="/playlist/<%= playlist["playlist_name"] %>" method="POST">

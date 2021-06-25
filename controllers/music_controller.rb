@@ -1,12 +1,6 @@
 
 get '/home' do
-    # if is_logged_in?()
-        
-        
-    # # locals: << :songs songs,
-        
-    # end
-
+ 
     # Send request to API to get top 10 popular songs
     url = URI("https://shazam.p.rapidapi.com/charts/track?locale=en-US&pageSize=10&startFrom=0")
 
@@ -20,19 +14,20 @@ get '/home' do
 
     response = http.request(request)
     
+    # Must pass response into JSON.parse because .read_body will output a string
     response_hash = JSON.parse(response.read_body)
 
     song_list = response_hash['tracks']
 
     if is_logged_in?()
+
         playlists = get_playlist(current_user[0]["email"])
 
         songs = get_songs(current_user[0]["id"])
 
-        erb :index, locals: { song_list: song_list, playlists: playlists, songs: songs,} 
-    else
-        erb :index, locals: { song_list: song_list, } 
-    end   
+    end
+
+    erb :index, locals: { song_list: song_list, playlists: playlists, songs: songs,} 
 
 end
 
@@ -54,7 +49,6 @@ get '/search' do
   
     response = http.request(request)
   
-    # Must pass response into JSON.parse because .read_body will output a string even if it's a hash
     response_hash = JSON.parse(response.read_body)
   
     songs = response_hash["tracks"]["hits"]

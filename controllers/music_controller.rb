@@ -53,9 +53,7 @@ get '/search' do
   
     songs = response_hash["tracks"]["hits"]
   
-    erb :'/music/list', locals: {response_hash: response_hash,  
-        
-    }
+    erb :'/music/list', locals: {response_hash: response_hash, songs: songs}
   
 end
 
@@ -92,7 +90,7 @@ get '/display' do
 
     end
 
-    erb :'/music/search', locals: {response: response, title: title, artist: artist, cover: cover, user_playlist: user_playlist}
+    erb :'/music/search', locals: {response: response, title: title, artist: artist, cover: cover, user_playlist: user_playlist, song: song}
   
 end
 

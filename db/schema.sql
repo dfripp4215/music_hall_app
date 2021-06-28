@@ -17,6 +17,6 @@ create table users (
 create table saved_songs(
     song TEXT, 
     artist TEXT, 
-    playlist TEXT
+    playlist TEXT,
     user_id INTEGER
 );

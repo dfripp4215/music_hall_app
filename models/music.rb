@@ -1,11 +1,20 @@
 def get_playlist (user_name)
 
-    run_sql("select * from playlist where user_name = '#{user_name}'")
+    sql_query = "select * from playlist where user_name = '$1'"
+
+    params = [user_name]
+
+    run_sql(sql_query, params)
 
 end
 
 def get_songs (user_id)
-    run_sql("select * from saved_songs where user_id = #{user_id}")
+
+    sql_query = "select * from saved_songs where user_id = $1"
+
+    params = [user_id]
+
+    run_sql(sql_query, params)
 end
 
 

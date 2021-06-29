@@ -4,11 +4,9 @@ get '/login' do
 end
 
 post '/sessions' do 
+    
     email = params[:email]
     password = params[:password]
-
-    
-
     user = find_user_by_email(email)
 
     bcrypt_password = BCrypt::Password.new(user['password_digest'])
